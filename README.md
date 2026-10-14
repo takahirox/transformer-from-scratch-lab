@@ -94,3 +94,11 @@ The experiments are intended to run comfortably on a recent Apple Silicon MacBoo
 ## Reference
 
 Vaswani et al., *Attention Is All You Need*, 2017.
+
+## Contributing
+
+Follow the [development flow](docs/development-flow.md) and [review and merge guidelines](docs/review-guidelines.md). Use English for new collaboration content as described in the [language convention](docs/development-flow.md#collaboration-language).
+
+- [Issue template](.github/ISSUE_TEMPLATE/issue.md)
+- [Pull request template](.github/pull_request_template.md)
+- [AI contributor guidance](AGENTS.md)
