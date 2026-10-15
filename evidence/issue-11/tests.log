@@ -1,0 +1,14 @@
+/private/var/folders/_t/12j6tqzx6wv4z2l__ttncdxc0000gn/T/gitweave-bc3f8ac7-9q06a9ie/gitweave-bc3f8ac7-9q06a9ie/.venv/lib/python3.13/site-packages/torch/_subclasses/functional_tensor.py:368: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+test_attention_reference_and_causal_mask (test_baseline.AttentionTests.test_attention_reference_and_causal_mask) ... ok
+test_multihead_matches_reference_and_backpropagates (test_baseline.AttentionTests.test_multihead_matches_reference_and_backpropagates) ... ok
+test_positions_shapes_and_model_gradients (test_baseline.AttentionTests.test_positions_shapes_and_model_gradients) ... ok
+test_tiny_numerical_example (test_baseline.AttentionTests.test_tiny_numerical_example) ... ok
+test_end_to_end_artifacts (test_baseline.ExperimentTests.test_end_to_end_artifacts) ... ok
+test_invalid_config (test_baseline.ExperimentTests.test_invalid_config) ... ok
+test_task_and_training_are_reproducible (test_baseline.ExperimentTests.test_task_and_training_are_reproducible) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 3.731s
+
+OK
