@@ -1,0 +1,32 @@
+name: Stage 0-7 lab smoke tests
+on:
+  push:
+    branches: [task/stages-0-7-end-to-end-lab]
+  pull_request:
+    paths:
+      - lab.py
+      - test_lab.py
+      - docs/end-to-end-lab.md
+      - .github/workflows/lab-smoke.yml
+jobs:
+  cpu:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install PyTorch CPU
+        run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Unit tests
+        run: python -m unittest -v test_lab
+      - name: End-to-end smoke run
+        run: python lab.py --output results-smoke --epochs 1 --steps 2 --bench-lengths 4 8 --warmup 1 --repeats 2
+      - name: Verify artifacts
+        run: |
+          test -s results-smoke/environment.json
+          test -s results-smoke/attention.json
+          test -s results-smoke/training.csv
+          test -s results-smoke/benchmark.csv
+          test -s results-smoke/synthesis.md
