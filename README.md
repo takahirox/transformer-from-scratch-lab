@@ -91,6 +91,15 @@ Use the implementations and experimental results to explain why Transformers wer
 
 The experiments are intended to run comfortably on a recent Apple Silicon MacBook. PyTorch MPS may be used where useful, with CPU measurements retained when they provide an informative comparison.
 
+## Executable baseline
+
+The [integrated Stage 0–7 baseline](baseline/README.md) implements explicit attention,
+a custom small Transformer, shared-task RNN/LSTM comparisons, sequence-length
+benchmarks, and a generated synthesis. See its setup commands, lightweight CPU
+tests, and [recorded experimental evidence](evidence/issue-11/report.md). The roadmap
+above remains the broader learning plan; this baseline does not complete every
+individual stage Issue. The original step-by-step script remains unchanged.
+
 ## Reference
 
 Vaswani et al., *Attention Is All You Need*, 2017.

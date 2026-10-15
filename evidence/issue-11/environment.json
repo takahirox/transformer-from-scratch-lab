@@ -1,0 +1,45 @@
+{
+  "created_utc": "2026-10-15T04:55:01.088871+00:00",
+  "python": "3.13.13",
+  "pytorch": "2.14.1",
+  "os": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "machine": "arm64",
+  "cpu": "Apple M4 Max",
+  "logical_cpu_count": 16,
+  "physical_memory_bytes": 68719476736,
+  "mps_built": true,
+  "mps_available": true,
+  "mps_fallback_env": "unset",
+  "torch_threads": 1,
+  "interop_threads": 16,
+  "deterministic_algorithms": true,
+  "deterministic_warn_only": true,
+  "dtype": "float32",
+  "training_device": "cpu",
+  "config": {
+    "seed": 7,
+    "threads": 1,
+    "classes": 8,
+    "width": 32,
+    "heads": 4,
+    "batch_size": 32,
+    "length": 32,
+    "steps": 200,
+    "eval_size": 256,
+    "log_every": 20,
+    "learning_rate": 0.003,
+    "lengths": [
+      16,
+      32,
+      64
+    ],
+    "warmup": 3,
+    "repeats": 10,
+    "devices": "auto"
+  },
+  "source_sha256": {
+    "__init__.py": "d23838cf342e370af91e2016e319018023868c1f0029d1896e1ec1fd5fbddf4a",
+    "models.py": "52be35540cac3a944053f94f057847cd779f07a77d06bab8f359fe90c7f566ef",
+    "run.py": "40edba73668b15748ccb83d6d1159c542884735a86fe0f318108678f76835b23"
+  }
+}
