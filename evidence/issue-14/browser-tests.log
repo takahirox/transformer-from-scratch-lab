@@ -1,0 +1,54 @@
+
+> recall-webgpu-demo@1.0.0 test:browser
+> playwright test
+
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:02] "GET / HTTP/1.1" 200 -
+
+Running 3 tests using 1 worker
+
+(node:49858) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:49858) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:04] "GET / HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:04] "GET /style.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:04] "GET /app.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:04] "GET /runtime.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:04] "GET /core.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:04] code 404, message File not found
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:04] "GET /favicon.ico HTTP/1.1" 404 -
+  ✓  1 tests/browser.spec.mjs:4:1 › unavailable WebGPU has a clear error and no enabled inference controls (563ms)
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:04] "GET / HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:04] "GET /style.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:04] "GET /app.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:04] "GET /runtime.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:04] "GET /core.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:04] "GET /vendor/ort.webgpu.min.mjs HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:04] "GET /model/manifest.json HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:04] "GET /vendor/ort-wasm-simd-threaded.jsep.mjs HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:04] "GET /vendor/ort-wasm-simd-threaded.jsep.wasm HTTP/1.1" 200 -
+  ✓  2 tests/browser.spec.mjs:12:1 › unsupported WebGPU operators fail without CPU compute fallback (999ms)
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:05] "GET / HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:05] "GET /style.css HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:05] "GET /app.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:05] "GET /runtime.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:05] "GET /core.js HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:05] "GET /vendor/ort.webgpu.min.mjs HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:05] "GET /model/manifest.json HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:05] "GET /vendor/ort-wasm-simd-threaded.jsep.mjs HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:05] "GET /vendor/ort-wasm-simd-threaded.jsep.wasm HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:05] "GET /model/recall-2.onnx HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:06] "GET /model/reference.json HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:06] "GET /model/recall-2.onnx HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:06] "GET /model/recall-16.onnx HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:06] "GET /model/recall-32.onnx HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:06] "GET /model/recall-64.onnx HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:06] "GET /model/recall-2.onnx HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:06] "GET /model/manifest.json HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:06] "GET /model/recall-2.onnx HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:06] "GET /model/recall-16.onnx HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:06] "GET /model/recall-32.onnx HTTP/1.1" 200 -
+[WebServer] 127.0.0.1 - - [20/Oct/2026 06:43:06] "GET /model/recall-64.onnx HTTP/1.1" 200 -
+  ✓  3 tests/browser.spec.mjs:26:1 › WebGPU agrees with PyTorch and supports local input, lengths and attention heads (2.2s)
+
+  3 passed (6.0s)

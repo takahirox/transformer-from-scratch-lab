@@ -18,6 +18,7 @@ from torch import nn
 from torch.nn import functional as F
 
 from .models import SequenceClassifier, scaled_attention
+from .checkpoint import save_transformer
 
 KINDS = ("rnn", "lstm", "transformer")
 
@@ -131,7 +132,7 @@ def evaluate(model, tokens, targets, batch_size):
     return {"eval_loss": loss_sum / len(tokens), "eval_accuracy": correct / len(tokens)}
 
 
-def train_comparison(config):
+def train_comparison(config, checkpoint=None):
     # Separate CPU generators: evaluation never consumes the training RNG stream.
     eval_generator = torch.Generator().manual_seed(config.seed + 1)
     eval_x, eval_y = recall_data(config.eval_size, config.length, config.classes, eval_generator)
@@ -168,6 +169,8 @@ def train_comparison(config):
             length_results.append({"length": length, **evaluate(model, x, y, config.batch_size)})
         records.append({"model": kind, "parameters": sum(p.numel() for p in model.parameters()),
                         "history": history, "evaluation_by_length": length_results})
+        if kind == "transformer" and checkpoint is not None:
+            save_transformer(model, asdict(config), checkpoint)
     return {"task": "first-token recall from final position; iid uniform distractors",
             "chance_accuracy": 1 / config.classes, "training_device": "cpu",
             "optimizer": "Adam; gradient norm clipped to 1.0; no dropout",
@@ -334,13 +337,15 @@ def synthesis(env, attention, training, benchmarks):
     return "\n".join(lines)
 
 
-def run(config, output):
+def run(config, output, checkpoint=None):
     config.validate()
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     # A failed rerun must not leave an old report implying this run completed.
     for name in ("environment.json", "attention.json", "training.json", "benchmark.json", "report.md"):
         (output / name).unlink(missing_ok=True)
+    if checkpoint is not None:
+        Path(checkpoint).unlink(missing_ok=True)
     torch.set_num_threads(config.threads)
     torch.use_deterministic_algorithms(True, warn_only=True)
     seed_everything(config.seed)
@@ -348,7 +353,7 @@ def run(config, output):
     write_json(output / "environment.json", env)
     attention = attention_evidence()
     write_json(output / "attention.json", attention)
-    training = train_comparison(config)
+    training = train_comparison(config, checkpoint)
     write_json(output / "training.json", training)
     timings = benchmark(config)
     write_json(output / "benchmark.json", timings)
@@ -359,6 +364,8 @@ def run(config, output):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, default=Path("results/quick"))
+    parser.add_argument("--checkpoint", type=Path,
+                        help="save the final trained Transformer weights/settings for browser export")
     parser.add_argument("--devices", choices=("cpu", "auto"), default="auto",
                         help="CPU always; auto also benchmarks MPS when available")
     parser.add_argument("--steps", type=int, default=200)
@@ -374,7 +381,7 @@ def main():
         config.validate()
     except ValueError as error:
         parser.error(str(error))
-    print(f"Saved baseline artifacts to {run(config, args.output)}")
+    print(f"Saved baseline artifacts to {run(config, args.output, args.checkpoint)}")
 
 
 if __name__ == "__main__":
