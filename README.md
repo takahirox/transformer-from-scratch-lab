@@ -100,6 +100,12 @@ tests, and [recorded experimental evidence](evidence/issue-11/report.md). The ro
 above remains the broader learning plan; this baseline does not complete every
 individual stage Issue. The original step-by-step script remains unchanged.
 
+## Browser inference
+
+The [browser-local WebGPU demo](web/README.md) runs the CLI-trained custom
+Transformer through ONNX Runtime Web and shows its predictions and per-head
+attention. Follow its train, checkpoint, export and static-serving commands.
+
 ## Reference
 
 Vaswani et al., *Attention Is All You Need*, 2017.

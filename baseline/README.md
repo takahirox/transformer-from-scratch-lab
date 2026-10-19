@@ -57,3 +57,7 @@ Memory fields explicitly distinguish exact parameter tensor storage, analytical 
 ## Recorded validation
 
 The checked-in [report](../evidence/issue-11/report.md) and [validation record](../evidence/issue-11/validation.md) identify the actual host, settings, commands, outputs and limitations. Generate your own results before making claims about another machine. The CPU tests cover hand values, reference agreement, multi-head shape/projection equivalence, causal masking, positional encodings, gradients through all models, repeatable training, invalid settings and end-to-end artifact contents. There are no required post-merge checks for Issue #11.
+
+## Save and run the trained Transformer in a browser
+
+Add `--checkpoint results/quick/transformer.pt` to `python -m baseline.run` to save the final trained Transformer weights with their model/training settings. The optional [WebGPU demo](../web/README.md) documents export dependencies, `python -m baseline.export`, fixed-length ONNX artifacts with attention outputs, local static serving, numerical verification and static hosting. The existing training/benchmark workflow and default output files are unchanged.

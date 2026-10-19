@@ -71,11 +71,12 @@ class TransformerBlock(nn.Module):
         self.norm2 = nn.LayerNorm(width)
         self.feed_forward = nn.Sequential(nn.Linear(width, 2 * width), nn.ReLU(), nn.Linear(2 * width, width))
 
-    def forward(self, x, allowed=None):
+    def forward(self, x, allowed=None, return_attention=False):
         # Pre-normalization, with residual connections around both sublayers.
-        mixed, _ = self.attention(self.norm1(x), allowed)
+        mixed, weights = self.attention(self.norm1(x), allowed)
         x = x + mixed
-        return x + self.feed_forward(self.norm2(x))
+        output = x + self.feed_forward(self.norm2(x))
+        return (output, weights) if return_attention else output
 
 
 class SequenceClassifier(nn.Module):
@@ -96,10 +97,14 @@ class SequenceClassifier(nn.Module):
             raise ValueError(f"unknown model: {kind}")
         self.classifier = nn.Linear(width, classes)
 
-    def forward(self, tokens):
+    def forward(self, tokens, return_attention=False):
         x = self.embedding(tokens)
         if self.kind == "transformer":
-            x = self.norm(self.sequence(self.position(x)))
+            x, weights = self.sequence(self.position(x), return_attention=True)
+            x = self.norm(x)
         else:
+            if return_attention:
+                raise ValueError("attention is available only for the Transformer")
             x, _ = self.sequence(x)
-        return self.classifier(x[:, -1])
+        logits = self.classifier(x[:, -1])
+        return (logits, weights) if return_attention else logits
