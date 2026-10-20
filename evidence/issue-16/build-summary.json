@@ -1,0 +1,276 @@
+{
+  "site": {
+    "files": [
+      {
+        "file": "THIRD_PARTY_NOTICES.txt",
+        "bytes": 1073,
+        "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c"
+      },
+      {
+        "file": "app.js",
+        "bytes": 6508,
+        "sha256": "8152daf97a4ca9d3702fc777c453eaf890d1ace34f7028ff9326cf191090b510"
+      },
+      {
+        "file": "core.js",
+        "bytes": 1536,
+        "sha256": "7fe426678ebf3c5e5eb6b44858485332c86572f0dd8d4a5324d6dcef22688133"
+      },
+      {
+        "file": "index.html",
+        "bytes": 3347,
+        "sha256": "46b0110b0df7269fd9d9dcb64d3eb34dadfbc605608eed6d2c3f7c316e881435"
+      },
+      {
+        "file": "model/manifest.json",
+        "bytes": 1875,
+        "sha256": "dde8e14fa193f6980a67fd5a31d5626588215b2663b908abf4a01cedf4a93b10"
+      },
+      {
+        "file": "model/recall-16.onnx",
+        "bytes": 46166,
+        "sha256": "c7198c1b8def1554840f78e04613cba5bf81115eeace72e306188a9b5fb3319d"
+      },
+      {
+        "file": "model/recall-2.onnx",
+        "bytes": 44374,
+        "sha256": "85d2f7b166e929631b864809a7f78f76686ef5897c04c7349fbb043a2980ee99"
+      },
+      {
+        "file": "model/recall-32.onnx",
+        "bytes": 48214,
+        "sha256": "6a5b4f301a7a41b90ba8aa612930b55875db315c726eecfc4724e4bd2d888d5c"
+      },
+      {
+        "file": "model/recall-64.onnx",
+        "bytes": 52310,
+        "sha256": "c9507b04d80ff02a9b90e98100e35746d7b86d1f6cfef80949bdfecf8f143d76"
+      },
+      {
+        "file": "model/reference.json",
+        "bytes": 2000998,
+        "sha256": "b622fc90e00c6785f77bce7fc7e1bbfbf21e8aae9e48b131000f267be0a56be1"
+      },
+      {
+        "file": "runtime.js",
+        "bytes": 5266,
+        "sha256": "d145be85c6094b1f920367cabb8a41b11e85e564c4369f8c0ec9cad57f6d4163"
+      },
+      {
+        "file": "style.css",
+        "bytes": 2041,
+        "sha256": "cd29615772adf60d7461d79e0382e5566cb126e930605ae3c6a8b4537468e461"
+      },
+      {
+        "file": "vendor/ThirdPartyNotices.txt",
+        "bytes": 326866,
+        "sha256": "e9e90971a8e75a9a8ac0c6412e29c1202d079998389915aa485f46c816c3b4cc"
+      },
+      {
+        "file": "vendor/ort-wasm-simd-threaded.jsep.mjs",
+        "bytes": 44677,
+        "sha256": "1cbcba8f2c769c1eecbab66a1b1e55ef11704515bf4306373e3db3c37cf6dcd8"
+      },
+      {
+        "file": "vendor/ort-wasm-simd-threaded.jsep.wasm",
+        "bytes": 21872216,
+        "sha256": "b45970d0632383a057c27ca5b660b216f8e00c17cf8db9f6207b5e4abc839368"
+      },
+      {
+        "file": "vendor/ort.webgpu.min.mjs",
+        "bytes": 357582,
+        "sha256": "e131e81c9324807e1e6f9103e8f8e936112827dcc9993cde9407a333b1f07ae0"
+      }
+    ],
+    "total_bytes": 24815049,
+    "max_bytes": 52428800
+  },
+  "manifest": {
+    "format_version": 1,
+    "task": "first-token recall from the final position",
+    "model_settings": {
+      "kind": "transformer",
+      "classes": 8,
+      "width": 32,
+      "heads": 4,
+      "max_length": 64
+    },
+    "training_config": {
+      "seed": 7,
+      "threads": 1,
+      "classes": 8,
+      "width": 32,
+      "heads": 4,
+      "batch_size": 32,
+      "length": 32,
+      "steps": 200,
+      "eval_size": 256,
+      "log_every": 20,
+      "learning_rate": 0.003,
+      "lengths": [
+        16,
+        32,
+        64
+      ],
+      "warmup": 1,
+      "repeats": 1,
+      "devices": "cpu"
+    },
+    "vocabulary": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7"
+    ],
+    "input": {
+      "name": "tokens",
+      "dtype": "int32",
+      "batch": 1
+    },
+    "outputs": {
+      "logits": "[1, classes]",
+      "attention": "[1, heads, query, key]"
+    },
+    "attention": "bidirectional; rows = query positions, columns = key positions; no padding",
+    "parameter_bytes": 36512,
+    "checkpoint_sha256": "20593e4c93a7d0662278c3e9ab25cc202b1e179ba31868fe96e155543ea35739",
+    "versions": {
+      "pytorch": "2.14.1",
+      "onnx": "1.20.1",
+      "onnxruntime": "1.24.2",
+      "opset": 17
+    },
+    "models": [
+      {
+        "length": 2,
+        "file": "recall-2.onnx",
+        "bytes": 44374,
+        "sha256": "85d2f7b166e929631b864809a7f78f76686ef5897c04c7349fbb043a2980ee99"
+      },
+      {
+        "length": 16,
+        "file": "recall-16.onnx",
+        "bytes": 46166,
+        "sha256": "c7198c1b8def1554840f78e04613cba5bf81115eeace72e306188a9b5fb3319d"
+      },
+      {
+        "length": 32,
+        "file": "recall-32.onnx",
+        "bytes": 48214,
+        "sha256": "6a5b4f301a7a41b90ba8aa612930b55875db315c726eecfc4724e4bd2d888d5c"
+      },
+      {
+        "length": 64,
+        "file": "recall-64.onnx",
+        "bytes": 52310,
+        "sha256": "c9507b04d80ff02a9b90e98100e35746d7b86d1f6cfef80949bdfecf8f143d76"
+      }
+    ],
+    "reference": "reference.json"
+  },
+  "training": {
+    "model": "transformer",
+    "parameters": 9128,
+    "history": [
+      {
+        "step": 0,
+        "train_loss": null,
+        "eval_loss": 2.230610966682434,
+        "eval_accuracy": 0.12890625
+      },
+      {
+        "step": 20,
+        "train_loss": 2.1402135491371155,
+        "eval_loss": 2.1213099658489227,
+        "eval_accuracy": 0.1328125
+      },
+      {
+        "step": 40,
+        "train_loss": 2.094165575504303,
+        "eval_loss": 2.0777886509895325,
+        "eval_accuracy": 0.12890625
+      },
+      {
+        "step": 60,
+        "train_loss": 2.061469292640686,
+        "eval_loss": 1.9819149672985077,
+        "eval_accuracy": 0.2109375
+      },
+      {
+        "step": 80,
+        "train_loss": 1.683877408504486,
+        "eval_loss": 1.1107018738985062,
+        "eval_accuracy": 0.7578125
+      },
+      {
+        "step": 100,
+        "train_loss": 0.527746545523405,
+        "eval_loss": 0.16682247817516327,
+        "eval_accuracy": 1.0
+      },
+      {
+        "step": 120,
+        "train_loss": 0.08867541775107383,
+        "eval_loss": 0.04434958752244711,
+        "eval_accuracy": 1.0
+      },
+      {
+        "step": 140,
+        "train_loss": 0.03169467905536294,
+        "eval_loss": 0.022177985403686762,
+        "eval_accuracy": 1.0
+      },
+      {
+        "step": 160,
+        "train_loss": 0.01850110818631947,
+        "eval_loss": 0.014893708052113652,
+        "eval_accuracy": 1.0
+      },
+      {
+        "step": 180,
+        "train_loss": 0.013063974631950259,
+        "eval_loss": 0.011267352383583784,
+        "eval_accuracy": 1.0
+      },
+      {
+        "step": 200,
+        "train_loss": 0.010315294284373522,
+        "eval_loss": 0.008938229293562472,
+        "eval_accuracy": 1.0
+      }
+    ],
+    "evaluation_by_length": [
+      {
+        "length": 16,
+        "eval_loss": 0.016967085073702037,
+        "eval_accuracy": 1.0
+      },
+      {
+        "length": 32,
+        "eval_loss": 0.00913137721363455,
+        "eval_accuracy": 1.0
+      },
+      {
+        "length": 64,
+        "eval_loss": 0.014157088589854538,
+        "eval_accuracy": 1.0
+      }
+    ]
+  },
+  "native_onnx": {
+    "cases": 12,
+    "max_abs_error": {
+      "logits": 1.5497207641601562e-06,
+      "attention": 5.364418029785156e-07
+    }
+  },
+  "repeat_build": {
+    "training_results_identical": true,
+    "manifest_and_model_hashes_identical": true,
+    "references_identical": true
+  }
+}
