@@ -1,3 +1,0 @@
-# Tested with Python 3.13; Python 3.10+ supported by the experiment code.
-# Use a Python version supported by this PyTorch release on your platform.
-torch==2.14.1
