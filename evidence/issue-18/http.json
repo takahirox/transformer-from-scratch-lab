@@ -1,0 +1,150 @@
+{
+  "verified_at_utc": "2026-10-20T03:36:48.013553+00:00",
+  "base_url": "https://takahirox.github.io/transformer-from-scratch-lab/",
+  "result": "pass",
+  "method": "HTTPS GET of every packaged file; byte equality to original workflow github-pages artifact; MIME and manifest ONNX size/SHA-256 checks",
+  "artifact_tar_sha256": "7e23d22109e473be48c61e31e6b333d34a2d85ff4ba18bec1f05b2a8d49e06dd",
+  "file_count": 16,
+  "total_bytes": 24814990,
+  "model_lengths": [
+    2,
+    16,
+    32,
+    64
+  ],
+  "reference_cases": 12,
+  "files": [
+    {
+      "url": "https://takahirox.github.io/transformer-from-scratch-lab/THIRD_PARTY_NOTICES.txt",
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 1073,
+      "sha256": "2f07c72751aed99790b8a4869cf2311df85a860b22ded05fa22803587a48922c",
+      "matches_pages_artifact": true
+    },
+    {
+      "url": "https://takahirox.github.io/transformer-from-scratch-lab/app.js",
+      "status": 200,
+      "content_type": "application/javascript",
+      "bytes": 6508,
+      "sha256": "8152daf97a4ca9d3702fc777c453eaf890d1ace34f7028ff9326cf191090b510",
+      "matches_pages_artifact": true
+    },
+    {
+      "url": "https://takahirox.github.io/transformer-from-scratch-lab/core.js",
+      "status": 200,
+      "content_type": "application/javascript",
+      "bytes": 1536,
+      "sha256": "7fe426678ebf3c5e5eb6b44858485332c86572f0dd8d4a5324d6dcef22688133",
+      "matches_pages_artifact": true
+    },
+    {
+      "url": "https://takahirox.github.io/transformer-from-scratch-lab/index.html",
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 3347,
+      "sha256": "46b0110b0df7269fd9d9dcb64d3eb34dadfbc605608eed6d2c3f7c316e881435",
+      "matches_pages_artifact": true
+    },
+    {
+      "url": "https://takahirox.github.io/transformer-from-scratch-lab/model/manifest.json",
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1879,
+      "sha256": "62fc1eed819ce5deb6c48147644c275f24357a5e4e8f8d20e30b894ccb53f24b",
+      "matches_pages_artifact": true
+    },
+    {
+      "url": "https://takahirox.github.io/transformer-from-scratch-lab/model/recall-16.onnx",
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "bytes": 46166,
+      "sha256": "c684b99fda3cd0dc8bab483945c602ea30e2b5bbc2c1865e94c6a9ef0bfa5ea4",
+      "matches_pages_artifact": true,
+      "matches_model_manifest": true
+    },
+    {
+      "url": "https://takahirox.github.io/transformer-from-scratch-lab/model/recall-2.onnx",
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "bytes": 44374,
+      "sha256": "f69725af8bed35101484cde8ef8751125342b2f4f0128fcc9fd148a1da8f8e8e",
+      "matches_pages_artifact": true,
+      "matches_model_manifest": true
+    },
+    {
+      "url": "https://takahirox.github.io/transformer-from-scratch-lab/model/recall-32.onnx",
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "bytes": 48214,
+      "sha256": "70238485821c153828bb27d3803be547d60552a8121ad66fa4a04eb059ac314e",
+      "matches_pages_artifact": true,
+      "matches_model_manifest": true
+    },
+    {
+      "url": "https://takahirox.github.io/transformer-from-scratch-lab/model/recall-64.onnx",
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "bytes": 52310,
+      "sha256": "b7b1400581a01d5fa72e2a9bf1828f2d503751e79e32eb5d5b1128bc21e3c7f8",
+      "matches_pages_artifact": true,
+      "matches_model_manifest": true
+    },
+    {
+      "url": "https://takahirox.github.io/transformer-from-scratch-lab/model/reference.json",
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 2000935,
+      "sha256": "1c47aa87f2d3b5f6ac686fd57a0c319e2cebf36115c6b8fd74c901e0e857f25b",
+      "matches_pages_artifact": true
+    },
+    {
+      "url": "https://takahirox.github.io/transformer-from-scratch-lab/runtime.js",
+      "status": 200,
+      "content_type": "application/javascript",
+      "bytes": 5266,
+      "sha256": "d145be85c6094b1f920367cabb8a41b11e85e564c4369f8c0ec9cad57f6d4163",
+      "matches_pages_artifact": true
+    },
+    {
+      "url": "https://takahirox.github.io/transformer-from-scratch-lab/style.css",
+      "status": 200,
+      "content_type": "text/css",
+      "bytes": 2041,
+      "sha256": "cd29615772adf60d7461d79e0382e5566cb126e930605ae3c6a8b4537468e461",
+      "matches_pages_artifact": true
+    },
+    {
+      "url": "https://takahirox.github.io/transformer-from-scratch-lab/vendor/ThirdPartyNotices.txt",
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 326866,
+      "sha256": "e9e90971a8e75a9a8ac0c6412e29c1202d079998389915aa485f46c816c3b4cc",
+      "matches_pages_artifact": true
+    },
+    {
+      "url": "https://takahirox.github.io/transformer-from-scratch-lab/vendor/ort-wasm-simd-threaded.jsep.mjs",
+      "status": 200,
+      "content_type": "text/javascript",
+      "bytes": 44677,
+      "sha256": "1cbcba8f2c769c1eecbab66a1b1e55ef11704515bf4306373e3db3c37cf6dcd8",
+      "matches_pages_artifact": true
+    },
+    {
+      "url": "https://takahirox.github.io/transformer-from-scratch-lab/vendor/ort-wasm-simd-threaded.jsep.wasm",
+      "status": 200,
+      "content_type": "application/wasm",
+      "bytes": 21872216,
+      "sha256": "b45970d0632383a057c27ca5b660b216f8e00c17cf8db9f6207b5e4abc839368",
+      "matches_pages_artifact": true
+    },
+    {
+      "url": "https://takahirox.github.io/transformer-from-scratch-lab/vendor/ort.webgpu.min.mjs",
+      "status": 200,
+      "content_type": "text/javascript",
+      "bytes": 357582,
+      "sha256": "e131e81c9324807e1e6f9103e8f8e936112827dcc9993cde9407a333b1f07ae0",
+      "matches_pages_artifact": true
+    }
+  ]
+}
