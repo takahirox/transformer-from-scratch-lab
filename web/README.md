@@ -67,6 +67,52 @@ Actual results and environment are in [the Issue #14 validation record](../evide
 
 ## Static hosting
 
-After training/export and `npm ci` / `npm run build`, upload `index.html`, `style.css`, `app.js`, `core.js`, `runtime.js`, the full `vendor/` directory the full `model/` directory and `THIRD_PARTY_NOTICES.txt` together. Preserve paths, MIME types (`.mjs` as JavaScript, `.wasm` as `application/wasm`) and serve over HTTPS. The single-threaded runtime does not need cross-origin-isolation headers. All paths are relative, including WASM/model URLs, so hosting under a repository subpath works.
+After training/export and `npm ci` / `npm run build`, the app can be served as static files over HTTPS. Preserve paths and MIME types (`.mjs` as JavaScript, `.wasm` as `application/wasm`). The single-threaded runtime does not need cross-origin-isolation headers. All paths are relative, including WASM/model URLs, so hosting under a repository subpath works. `npm run build` also downloads ONNX Runtime 1.22.0's upstream third-party notices from a fixed source commit and verifies their SHA-256; setup needs access to `raw.githubusercontent.com` as well as the dependency registries.
 
-For GitHub Pages, put those files at the root of a Pages deployment artifact or the chosen Pages branch/folder and enable Pages for that source. Include `.nojekyll` if publishing a branch. Generate ignored model/vendor assets before packaging; source checkout alone is not a complete deployment. Only public static assets belong in the bundle; the Python checkpoint is unnecessary for serving. No deployment workflow or publication is included here. There are no required post-merge checks.
+## GitHub Pages build and deployment
+
+The expected public URL is **https://takahirox.github.io/transformer-from-scratch-lab/**. Publication is handled by [`.github/workflows/pages.yml`](../.github/workflows/pages.yml), following GitHub's [custom Pages workflow](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) contract. A successful local or PR build does not establish that this URL is published.
+
+One-time repository administrator setup:
+
+1. In **Settings → Pages → Build and deployment → Source**, select **GitHub Actions**. Do not select a publishing branch or commit the generated assets.
+2. Ensure repository Actions policies allow the `actions/*` actions in the workflow and deployment tokens with `pages: write` and `id-token: write`. The `github-pages` deployment environment must permit `main`; retain any intentional environment protection rules.
+3. After merge, inspect the actual publication run. The workflow checks Pages configuration without trying to enable Pages automatically. If admin configuration blocks publication, record the exact required setting and track the blocker in a new `task` Issue as described below.
+
+Pull requests targeting `main` run the build/check job when the workflow, Python model/tests/dependencies, or web files change. These runs have only `contents: read` and never upload a Pages deployment artifact or deploy. Relevant pushes to `main` build the same artifact and publish it; manual **Actions → WebGPU demo Pages → Run workflow** also publishes when the selected branch is `main`. Dispatches from other branches only validate. Concurrency separates PRs and serializes production runs without cancelling an active deployment. Only the dependent deployment job receives Pages/OIDC write permissions and uses the `github-pages` environment.
+
+The build uses Ubuntu 24.04, Python 3.13.13, Node 24.12.0, pinned numerical dependencies from `requirements-export.txt`, a CPU PyTorch wheel, and `npm ci` with the checked-in lockfile. It trains the actual classifier with seed 7, one CPU thread, deterministic algorithms, 200 Adam steps, training length 32 and positional capacity 64. The CLI still runs its RNN/LSTM comparisons; benchmark warmup/repeats are reduced to one each for this deployment build. No external dataset or checkpoint cache is needed. The manifest records the complete model/training settings, tool versions, checkpoint hash, and model hashes. Repeatability is for the same tools/platform; bit-identical results across different OSes, hardware or dependency versions are not promised. Timings and environment timestamps naturally vary.
+
+Local reproduction from the repository root (create `.venv` and install `requirements-export.txt` as above; on Linux the workflow installs `torch==2.14.1` from `https://download.pytorch.org/whl/cpu` first):
+
+```sh
+npm --prefix web ci
+.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python 01_attention_basics/self_attention_step_by_step.py
+npm --prefix web test
+.venv/bin/python -m baseline.run --devices cpu --seed 7 --steps 200 \
+  --length 32 --lengths 16 32 64 --warmup 1 --repeats 1 \
+  --output results/pages-training --checkpoint results/pages-training/transformer.pt
+.venv/bin/python -m baseline.export --checkpoint results/pages-training/transformer.pt \
+  --output web/model --lengths 2 16 32 64
+npm --prefix web run build:pages
+npm --prefix web run test:pages
+python3 -m http.server 8000 --bind 127.0.0.1 --directory results/pages
+```
+
+Open **http://localhost:8000/transformer-from-scratch-lab/**. The publishable artifact is only `results/pages/transformer-from-scratch-lab/`; its contents become the site root under that repository subpath. The packager copies an explicit allowlist: HTML/CSS, three app JS modules, four ONNX models, manifest/reference JSON, three runtime JS/WASM files, and runtime license/notices. It validates nonempty regular files, literal source asset references, model sizes/hashes and reference coverage/shapes. It rejects duplicate/unsafe model paths and sites above **50 MiB**, comfortably below the [Pages 1 GB site limit](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits), and prints the actual total bytes including runtime and references. Checkpoints, Python environments, training output, source tests, credentials and `node_modules` are excluded. Generated bundles remain gitignored.
+
+Pre-merge validation includes the existing Python/JS tests, ONNX graph checking and native reference comparisons during export, negative packaging checks, and HTTP path/MIME/hash checks against the assembled artifact under `/transformer-from-scratch-lab/`. `test:pages` also reuses the existing Chrome WebGPU integration tests at that subpath and checks the visible unsupported state. It requires installed Chrome (CI installs it via Playwright). Without an adapter, GPU-dependent tests explicitly skip; the capability probe and test results are retained in the `pages-validation` Actions artifact along with training/environment reports and the export manifest. A skipped GPU test is **unverified WebGPU execution**, not a pass. Browser installation, packaging, operator or numerical failures on a capable adapter fail the build. Use Chrome/Edge with a working WebGPU adapter and hardware acceleration over HTTPS or localhost; no inference server or CPU fallback is introduced.
+
+The implementation's recorded pre-merge results are in [the Issue #16 validation record](../evidence/issue-16/validation.md). Review the diff and actual evidence before merge; do not require a live site before merging.
+
+## Required post-merge verification (pending until publication)
+
+This is separate from pre-merge approval. After merging the reviewed implementation:
+
+1. Inspect the **actual** `WebGPU demo Pages` Actions run triggered on `main`, wait for completion, and inspect build/deploy logs and the environment's deployed URL. Record the workflow-run URL and outcome; a green PR run does not prove deployment succeeded.
+2. On success, request the published HTTPS URL above. Verify the page, JS/CSS, `model/manifest.json`, its `reference.json` and every ONNX model, plus the vendor JS/WASM and notices under the repository subpath. Check HTTP status/MIME types, model hashes and the app's initialization or clear unsupported-WebGPU message. On a capable browser/device, run **Compare with PyTorch fixtures** and record the browser/adapter and result; otherwise record real-WebGPU inference as unverified with the concrete limitation.
+3. Save the run URL, publication URL, HTTP/browser results and device limitations separately from the pre-merge decision. Publication remains **pending** until this check is actually performed.
+4. If deployment fails, the site is broken, or an admin setting blocks publication, create a **new `task`-labeled follow-up Issue** linking Issue #16 and the merged PR. Include the deployment-run URL, observed errors/symptoms, expected behavior, reproduction, exact admin action if needed, and actionable pre-merge acceptance criteria. Fix it in a separate PR. Do not retroactively fail the original pre-merge validation or hold the original merge for a deployment that requires that merge.
+
+Issue #16 may close after its complete implementation and pre-merge checks pass and it is merged; required post-merge verification remains explicitly pending until verified. Additional physical browsers/GPUs and caching/performance measurements are optional validation.
