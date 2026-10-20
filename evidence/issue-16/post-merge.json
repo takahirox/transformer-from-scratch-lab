@@ -1,0 +1,62 @@
+{
+  "repository": "takahirox/transformer-from-scratch-lab",
+  "source_issue": 16,
+  "source_issue_state_immediately_before_merge": "OPEN",
+  "source_issue_state_after_merge": "CLOSED",
+  "pr": {
+    "number": 17,
+    "url": "https://github.com/takahirox/transformer-from-scratch-lab/pull/17",
+    "head_sha": "173609207f6c4c0bec37fefa532d54d1468b024b"
+  },
+  "merged": true,
+  "merge_method": "merge",
+  "merge_commit": "e3a749abe656817994c6fc4b19174b93aa253bae",
+  "merged_at": "2026-10-20T03:30:02Z",
+  "pre_merge": {
+    "upstream_review": "approved with no findings",
+    "head_matched": true,
+    "github_merge_state": "CLEAN",
+    "build_check": "SUCCESS",
+    "required_checks_or_reviews_bypassed": false
+  },
+  "post_merge": {
+    "workflow_run": "https://github.com/takahirox/transformer-from-scratch-lab/actions/runs/39364610372",
+    "event": "push",
+    "head_sha": "e3a749abe656817994c6fc4b19174b93aa253bae",
+    "status": "completed",
+    "conclusion": "failure",
+    "build": {
+      "conclusion": "success",
+      "python_tests_passed": 9,
+      "javascript_tests_passed": 4,
+      "browser_tests_passed": 2,
+      "browser_tests_skipped": 2,
+      "browser_limitations": "Hosted CI passed unsupported-WebGPU and static subpath checks; GPU-dependent checks were skipped. Real WebGPU execution is unverified by this run.",
+      "site_files": 16,
+      "site_bytes": 24814990,
+      "site_limit_bytes": 52428800,
+      "pages_artifact_uploaded": true
+    },
+    "deploy": {
+      "conclusion": "failure",
+      "job_url": "https://github.com/takahirox/transformer-from-scratch-lab/actions/runs/39364610372/job/118438970564",
+      "failed_step": "Check Pages configuration",
+      "action": "actions/configure-pages@v5",
+      "error_at": "2026-10-20T03:31:52Z",
+      "error": "Get Pages site failed. Please verify that the repository has Pages enabled and configured to build using GitHub Actions. HttpError: Not Found",
+      "repository_pages_api_http_status": 404,
+      "deployed_url": null
+    },
+    "https_check": {
+      "url": "https://takahirox.github.io/transformer-from-scratch-lab/",
+      "performed_after_run_completion": true,
+      "http_status": 404,
+      "asset_and_browser_verification": "Blocked by failed publication; live assets, initialization and real-device inference remain unverified."
+    },
+    "follow_up_issue": "https://github.com/takahirox/transformer-from-scratch-lab/issues/18",
+    "follow_up_labels": ["task"],
+    "required_admin_action": "Settings > Pages > Build and deployment > Source: GitHub Actions. Ensure Actions policies allow the workflow and github-pages permits main; investigate Pages access/policy if already configured. Then run WebGPU demo Pages on main and verify the actual deployment and live site.",
+    "repository_settings_changed": false,
+    "publication_verification": "blocked; tracked in follow-up Issue #18"
+  }
+}
