@@ -29,6 +29,8 @@ Prefer the smallest coherent design that fully satisfies the Issue. Added comple
 
 Verify correctness, consistency with the existing source and documentation, and validation appropriate to the changed files. Read actual results and confirm failures, skipped checks, and unperformed checks are disclosed accurately. Do not infer successful validation from a proposed command.
 
+Review applicable interface changes against the [UI/UX principles](../README.md#uiux).
+
 For templates/documentation-only changes, check template/Markdown syntax, working links, whitespace, and consistency. Follow the [available validation guidance](development-flow.md#choose-relevant-validation); do not require unrelated runtime suites, model training, hardware checks, or new tooling. For experiment changes, check the affected mathematics, tensor shapes, and recorded outputs as required by the Issue.
 
 ## Check pre-merge acceptance and post-merge verification

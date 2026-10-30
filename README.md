@@ -87,6 +87,16 @@ Use the implementations and experimental results to explain why Transformers wer
 - Preserve unexpected results and analyze why they occurred.
 - Relate every major experiment back to a specific idea from *Attention Is All You Need*.
 
+## UI/UX
+
+Apply these principles to existing experiment and baseline commands, messages, examples, the browser-local WebGPU demo, and any future graphical interface. Preserve intermediate tensor values, shapes, and measurements needed for learning.
+
+1. **Keep it simple.** Show only necessary information and actions; avoid unnecessary UI elements.
+2. **Show, don't tell.** Prefer layout, spacing and visual hierarchy over explanatory labels or prose to communicate structure.
+3. **Intuitive and predictable.** Keep appearance and behavior consistent with user expectations; don't interrupt the user's work.
+
+Keep necessary control labels, accessible names, error messages, and information needed to use the interface. Simplification must preserve meaningful consent, destructive-action safeguards, necessary warnings, and necessary user decisions.
+
 ## Target Environment
 
 The experiments are intended to run comfortably on a recent Apple Silicon MacBook. PyTorch MPS may be used where useful, with CPU measurements retained when they provide an informative comparison.
