@@ -116,6 +116,10 @@ The [browser-local WebGPU demo](web/README.md) runs the CLI-trained custom
 Transformer through ONNX Runtime Web and shows its predictions and per-head
 attention. Follow its train, checkpoint, export and static-serving commands.
 
+## Contributing
+
+Follow the [development flow](docs/development-flow.md), [test and CI performance principles](docs/development-flow.md#test-and-ci-performance-principles), and [review guidelines](docs/review-guidelines.md) for Issue scope, relevant validation and review.
+
 ## Reference
 
 Vaswani et al., *Attention Is All You Need*, 2017.
