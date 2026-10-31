@@ -31,6 +31,8 @@ Verify correctness, consistency with the existing source and documentation, and 
 
 Review applicable interface changes against the [UI/UX principles](../README.md#uiux).
 
+Apply the [test and CI performance principles](development-flow.md#test-and-ci-performance-principles): consider the additional defects covered, overlap with existing checks, and execution/maintenance cost of new or expanded validation. Ask: **Does this change provide sufficient confidence with the lightest appropriate validation, without redundant execution?**
+
 For templates/documentation-only changes, check template/Markdown syntax, working links, whitespace, and consistency. Follow the [available validation guidance](development-flow.md#choose-relevant-validation); do not require unrelated runtime suites, model training, hardware checks, or new tooling. For experiment changes, check the affected mathematics, tensor shapes, and recorded outputs as required by the Issue.
 
 ## Check pre-merge acceptance and post-merge verification
