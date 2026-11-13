@@ -12,7 +12,7 @@ Read the source Issue, its mandatory acceptance criteria, and relevant clarifica
 
 Verify that every required behavior and acceptance criterion the PR claims to resolve is implemented and appropriately validated. Follow relevant links and check that documentation matches the actual repository structure and tooling.
 
-Do not approve a PR as closing an Issue while required work remains. If the implementation is intentionally partial, its description must say so and the Issue must remain open.
+Do not approve a PR as closing an Issue while implementation or mandatory pre-merge acceptance remains incomplete. If the implementation is intentionally partial, its description must state the remaining scope, use a non-closing Issue link, and leave the parent Issue open. Pending post-merge-only verification does not make an otherwise complete implementation partial.
 
 ## Check for unnecessary work
 
@@ -39,6 +39,8 @@ For templates/documentation-only changes, check template/Markdown syntax, workin
 
 Require mandatory pre-merge acceptance to be achievable and verifiable before merge, with sufficient passing evidence. Keep optional validation separate. Checks possible only after merge, such as merge-triggered deployment or published-site verification, must not be pre-merge approval conditions.
 
+Preserve `Closes #N` for a fully implemented Issue whose mandatory pre-merge acceptance is satisfied. Do not request removing it, keeping the source Issue open, or withholding approval solely because post-merge-only verification is pending. This prevents the Review → Fix → Publish → Review loop described in the [merge and follow-up lifecycle](development-flow.md#5-merge-and-report-any-required-follow-up). Missing implementation, mandatory pre-merge tests, required protections, and genuinely necessary pre-merge human acceptance remain blockers.
+
 Record genuinely necessary post-merge verification separately as pending until performed, or state that none is required. Do not add it routinely. Pre-merge evidence does not prove deployment or publication succeeded. This distinction does not waive implementation requirements, applicable pre-merge checks, or genuinely required post-merge work.
 
 ## Choose the review outcome
@@ -47,4 +49,4 @@ Record genuinely necessary post-merge verification separately as pending until p
 - **Waiting for necessary human input:** record the specific question, why the answer is necessary, and what confirmation or decision is expected. Use the workflow's wait path and resume review when the answer arrives. Keep this state distinct from fixable code findings; do not repeatedly request code changes for missing human confirmation.
 - **Ready to merge:** approve and merge when the implementation fully addresses the Issue it claims to resolve, no unjustified scope or complexity remains, all mandatory pre-merge checks pass with sufficient evidence, and no blocking findings or necessary unanswered human questions remain. Act within the task's authorization and repository permissions.
 
-Pending checks possible only after merge do not prevent approval when those conditions hold. After merge, perform any recorded required verification and honestly report actual results and follow-up. Do not mark it complete until performed. Templates/documentation-only work normally requires no post-merge verification.
+Pending checks possible only after merge do not prevent approval when those conditions hold. After successful merge, close the original Issue, then follow the [merge and follow-up lifecycle](development-flow.md#5-merge-and-report-any-required-follow-up): record actual verification evidence in the merged PR, closed Issue, or linked validation report, and track discovered defects in an existing equivalent or new linked Issue rather than reopening the original solely for follow-up. Unperformed or environment-blocked checks remain pending; closure does not claim they passed, and an unavailable environment alone is not a product defect. Preserve historical results. Templates/documentation-only work normally requires no post-merge verification.
