@@ -1,8 +1,0 @@
-deploy	Check Pages configuration	﻿2026-10-20T03:35:02.9635427Z ##[group]Run actions/configure-pages@v5
-deploy	Check Pages configuration	2026-10-20T03:35:02.9647782Z   enablement: false
-deploy	Publish tested static artifact	﻿2026-10-20T03:35:03.2904319Z ##[group]Run actions/deploy-pages@v4
-deploy	Publish tested static artifact	2026-10-20T03:35:03.4811514Z (node:2217) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-deploy	Publish tested static artifact	2026-10-20T03:35:05.2521494Z Created deployment for e3a749abe656817994c6fc4b19174b93aa253bae, ID: e3a749abe656817994c6fc4b19174b93aa253bae
-deploy	Publish tested static artifact	2026-10-20T03:35:10.3831442Z Reported success!
-deploy	Complete job	2026-10-20T03:35:10.4106165Z Evaluated environment url: https://takahirox.github.io/transformer-from-scratch-lab/
-deploy	Complete job	2026-10-20T03:35:10.4396590Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/configure-pages@v5, actions/deploy-pages@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

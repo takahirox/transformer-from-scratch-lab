@@ -1,5 +1,0 @@
-
-> recall-webgpu-demo@1.0.0 build
-> node scripts/prepare-runtime.mjs
-
-Prepared local ONNX Runtime Web 1.22.0 assets in web/vendor.

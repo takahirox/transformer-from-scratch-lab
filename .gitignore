@@ -1,9 +1,0 @@
-.venv/
-__pycache__/
-*.py[cod]
-results/
-web/node_modules/
-web/vendor/
-web/model/
-web/test-results/
-web/playwright-report/

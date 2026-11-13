@@ -1,4 +1,0 @@
-{
-  "description": "ONNX opset 17 Unique(int32[1,2]); valid CPU model with no WebGPU kernel in ORT Web 1.22.0. Generated with onnx.helper.make_model, IR version 8.",
-  "base64": "CAg6XAoYCgZ0b2tlbnMSBnZhbHVlcyIGVW5pcXVlEhJ1bnN1cHBvcnRlZC13ZWJncHVaGAoGdG9rZW5zEg4KDAgGEggKAggBCgIIAmISCgZ2YWx1ZXMSCAoGCAYSAgoAQgQKABAR"
-}
