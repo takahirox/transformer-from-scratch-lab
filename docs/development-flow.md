@@ -55,7 +55,7 @@ Report failures, skipped checks, and unperformed checks accurately, with reasons
 
 Target `main` unless the task selects another base branch. Use the [PR template](../.github/pull_request_template.md) to explain the problem, resulting behavior, focused changes, related Issues, and validation actually performed. Use concise English commit messages describing what changed and why, and reference the Issue.
 
-Claim to close an Issue only when its implementation requirements are fully addressed. State intentional partial scope clearly and leave the Issue open. Report completed pre-merge checks separately from required post-merge verification, which remains pending until performed. Pending checks possible only after merge do not make an otherwise complete implementation partial.
+Use and preserve the normal `Closes #N` reference when the implementation fully addresses the Issue and applicable mandatory pre-merge acceptance is satisfied. For intentional partial implementation, state the remaining scope, use a non-closing Issue link, and leave the parent Issue open. Report completed pre-merge checks separately from required post-merge verification, which remains pending until performed. Pending checks possible only after merge do not make an otherwise complete implementation partial.
 
 ## 4. Review and revise as needed
 
@@ -67,4 +67,10 @@ Request fixes for agent-fixable findings, then review the updated PR again. If g
 
 Approve and merge when the implementation is complete, mandatory pre-merge checks are sufficient and pass, and no blocking review findings remain, within the task's authorization and repository permissions.
 
-Perform recorded required post-merge checks when applicable. Keep them pending until performed, then report actual results, failures, and necessary follow-up. Pre-merge validation does not prove deployment or publication succeeded. Templates/documentation-only work has no required post-merge verification unless the source Issue establishes a specific need.
+Close the original Issue after successful merge, then perform recorded required post-merge checks when applicable. This is the lifecycle even when those checks remain pending. ProjectWeave publication adds `Closes #N` and its merge/close stages close the source Issue; removing that reference, keeping the Issue open, or withholding approval solely for post-merge-only verification makes review and publication undo each other in a Review → Fix → Publish → Review loop. Do not request those changes. Missing implementation, mandatory pre-merge tests, required repository protections, and genuinely necessary pre-merge human acceptance remain blockers.
+
+Record actual post-merge results and evidence in the merged PR, closed Issue, or a linked validation report. Keep unperformed or environment-blocked checks explicitly pending with the reason; Issue closure does not claim they passed. Pre-merge validation does not prove deployment or publication succeeded. An unavailable test environment alone is not evidence of a product defect. Templates/documentation-only work has no required post-merge verification unless the source Issue establishes a specific need; do not add routine manual approval, physical-device, heavyweight-model-download, or deployment gates.
+
+If verification finds an actual defect, first check for an existing equivalent Issue. Use that Issue or create a new linked Issue with reproduction steps, the affected revision, expected and actual behavior, and links to the original Issue and PR. Track the fix there; do not reopen the original Issue solely for post-merge follow-up. The [Pages checklist](../web/README.md#required-post-merge-verification-pending-until-publication) also describes tracking publication/admin blockers separately.
+
+This lifecycle supersedes older instructions to keep an implemented Issue open solely for post-merge verification. Preserve historical test outcomes and evidence as recorded; do not rewrite them to imply pending, skipped, or blocked checks passed.
